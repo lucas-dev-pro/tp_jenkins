@@ -4,25 +4,25 @@ pipeline {
     stages {
         stage('Cloner le dépôt') {
             steps {
-                git 'https://github.com/lucas-dev-pro/tp_jenkins.git'
+                git 'https://github.com/ton-utilisateur/ton-depot.git'
             }
         }
 
         stage('Tests unitaires') {
             steps {
-                sh 'python -m unittest discover tests'
+                bat 'python -m unittest discover tests'
             }
         }
 
         stage('Build Docker') {
             steps {
-                sh 'docker build -t mon-image:test .'
+                bat 'docker build -t mon-image:test .'
             }
         }
 
-        stage('Déploiement') {
+        stage('Déploiement local') {
             steps {
-                sh 'docker run -d -p 8000:8000 mon-image:test'
+                bat 'docker run -d -p 8000:8000 mon-image:test'
             }
         }
     }
