@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Cloner le dépôt') {
             steps {
-                git 'https://github.com/ton-utilisateur/ton-depot.git'
+                git 'https://github.com/lucas-dev-pro/tp_jenkins.git'
             }
         }
 
