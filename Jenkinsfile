@@ -16,7 +16,7 @@ pipeline {
 
         stage('Build Docker') {
             steps {
-                bat 'docker build -t mon-image:test .'
+                bat 'docker build -t saes5/mon-image:test .'
             }
         }
 
