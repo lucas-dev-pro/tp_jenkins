@@ -20,9 +20,14 @@ pipeline {
             }
         }
 
-        stage('Déploiement local') {
+        stage('Push vers Docker Hub') {
             steps {
-                bat 'docker run -d -p 8000:8000 mon-image:test'
+                withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    bat '''
+                    echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                    docker push %IMAGE_NAME%
+                    '''
+                }
             }
         }
     }
